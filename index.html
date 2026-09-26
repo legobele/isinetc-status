@@ -126,9 +126,9 @@ async function load() {
       }
       const r = bar.getBoundingClientRect(), cr = card.getBoundingClientRect();
       tip.style.left = Math.max(8, Math.min(cr.width - 300, r.left - cr.left + r.width / 2 - 150)) + 'px';
-      tip.style.top = (r.top - cr.top - tip.offsetHeight - 12) + 'px';
-      if (parseFloat(tip.style.top) < 0) tip.style.top = (r.bottom - cr.top + 12) + 'px';
       tip.classList.add('show');
+      const above = r.top - cr.top - tip.offsetHeight - 12;
+      tip.style.top = (above < 0 ? (r.bottom - cr.top + 12) : above) + 'px';
     };
     card.querySelectorAll('.bar').forEach(b =>
       b.addEventListener('click', e => { e.stopPropagation(); showTip(b); }));
