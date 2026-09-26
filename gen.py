@@ -14,7 +14,7 @@ if os.path.exists(LOG):
     with open(LOG) as f:
         checks = [json.loads(l) for l in f if l.strip()]
 checks.append(entry)
-checks = checks[-2000:]
+checks = checks[-9000:]  # 90 days at 15-min cadence
 with open(LOG, "w") as f:
     for c in checks:
         f.write(json.dumps(c) + "\n")
@@ -35,6 +35,7 @@ status = {
     "uptime_24h": uptime(24),
     "uptime_7d": uptime(7 * 24),
     "uptime_30d": uptime(30 * 24),
+    "uptime_90d": uptime(90 * 24),
     "total_checks": len(checks),
     "recent": checks[-60:][::-1],
 }

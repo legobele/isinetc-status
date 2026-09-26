@@ -41,6 +41,7 @@
     <div class="stat"><div class="v" id="u24">–</div><div class="l">uptime 24h</div></div>
     <div class="stat"><div class="v" id="u7">–</div><div class="l">uptime 7d</div></div>
     <div class="stat"><div class="v" id="u30">–</div><div class="l">uptime 30d</div></div>
+    <div class="stat"><div class="v" id="u90">–</div><div class="l">uptime 90d</div></div>
   </div>
   <h2>recent checks</h2>
   <div class="log" id="log"></div>
@@ -62,6 +63,7 @@ async function load() {
   document.getElementById('u24').textContent = pct(s.uptime_24h);
   document.getElementById('u7').textContent = pct(s.uptime_7d);
   document.getElementById('u30').textContent = pct(s.uptime_30d);
+  document.getElementById('u90').textContent = pct(s.uptime_90d);
   document.getElementById('log').innerHTML = s.recent.map(c => {
     const t = new Date(c.t).toLocaleString([], {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'});
     return '<div class="row"><span class="' + (c.up ? 'ok' : 'bad') + '">' +
