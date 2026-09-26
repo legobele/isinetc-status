@@ -5,85 +5,137 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>isiNET status</title>
 <style>
-  :root { color-scheme: dark; }
-  body { font-family: system-ui, -apple-system, sans-serif; background: #0f1216; color: #e8eaed;
-         margin: 0; padding: 32px 16px; display: flex; justify-content: center; }
-  .wrap { width: 100%; max-width: 640px; }
-  h1 { font-size: 22px; margin: 0 0 4px; }
-  .sub { color: #8b93a1; font-size: 13px; margin-bottom: 24px; }
-  .pill { display: inline-block; padding: 10px 22px; border-radius: 999px; font-weight: 700;
-          font-size: 18px; margin-bottom: 8px; }
-  .up { background: #0c6b3c; color: #fff; }
-  .down { background: #c92a2a; color: #fff; }
-  .meta { color: #8b93a1; font-size: 13px; margin-bottom: 28px; }
-  .stats { display: flex; gap: 12px; margin-bottom: 28px; }
-  .stat { flex: 1; background: #171b21; border: 1px solid #262c35; border-radius: 12px;
-          padding: 14px; text-align: center; }
-  .stat .v { font-size: 22px; font-weight: 700; }
-  .stat .l { font-size: 11px; color: #8b93a1; margin-top: 4px; }
-  h2 { font-size: 15px; margin: 0 0 12px; }
-  .surf { background: #171b21; border: 1px solid #262c35; border-radius: 12px;
-          overflow: hidden; margin-bottom: 28px; }
-  .srow { display: flex; justify-content: space-between; align-items: center;
-          padding: 11px 14px; font-size: 13px; border-bottom: 1px solid #20252d; }
-  .srow:last-child { border-bottom: none; }
-  .srow .n { font-weight: 600; }
-  .srow .u { color: #5c6470; font-size: 11px; display: block; margin-top: 2px; }
-  .log { background: #171b21; border: 1px solid #262c35; border-radius: 12px; overflow: hidden; }
-  .row { display: flex; justify-content: space-between; padding: 9px 14px; font-size: 13px;
-         border-bottom: 1px solid #20252d; font-variant-numeric: tabular-nums; }
-  .row:last-child { border-bottom: none; }
-  .ok { color: #51cf66; } .bad { color: #ff6b6b; } .t { color: #8b93a1; }
-  footer { margin-top: 28px; color: #5c6470; font-size: 12px; text-align: center; }
-  a { color: #4dabf7; }
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+         background: #f6f8fa; color: #1f2328; margin: 0; padding: 0 0 48px; }
+  .banner { display: flex; align-items: center; gap: 12px; color: #fff;
+            font-size: 20px; font-weight: 600; padding: 18px 24px; }
+  .banner.up { background: #1a7f37; }
+  .banner.down { background: #cf222e; }
+  .banner svg { flex-shrink: 0; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 28px 20px 0; }
+  h1 { font-size: 32px; font-weight: 600; margin: 0 0 6px; }
+  .sub { color: #59636e; font-size: 15px; margin-bottom: 24px; }
+  .sub a { color: #0969da; text-decoration: none; }
+  .card { background: #fff; border: 1px solid #d0d7de; border-radius: 6px;
+          margin-bottom: 16px; position: relative; }
+  .card-head { display: flex; align-items: center; justify-content: space-between;
+               padding: 16px 20px 4px; }
+  .card-title { font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .q { width: 22px; height: 22px; border: 1px solid #d0d7de; border-radius: 50%;
+       color: #0969da; font-size: 13px; display: inline-flex; align-items: center;
+       justify-content: center; cursor: help; background: #fff; }
+  .check { width: 34px; height: 34px; border-radius: 50%; background: #1a7f37;
+           display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .check.bad { background: #cf222e; }
+  .bars { display: flex; gap: 3px; align-items: flex-end; height: 40px;
+          padding: 12px 20px 0; }
+  .bar { flex: 1; min-width: 2px; height: 34px; border-radius: 2px; cursor: pointer; }
+  .bar.up { background: #9ed0a4; }
+  .bar.part { background: #e3b341; }
+  .bar.down { background: #e5534b; }
+  .bar.none { background: #eaeef2; cursor: default; }
+  .labels { display: flex; align-items: center; padding: 8px 20px 0;
+            color: #59636e; font-size: 14px; }
+  .labels .rule { flex: 1; height: 1px; background: #d0d7de; margin: 0 16px; }
+  .state { padding: 6px 20px 18px; color: #59636e; font-size: 14px; }
+  .tip { position: absolute; z-index: 10; background: #fff; border: 1px solid #d0d7de;
+         border-radius: 8px; box-shadow: 0 8px 24px rgba(31,35,40,.18);
+         padding: 18px 20px; min-width: 280px; max-width: 92%; display: none; }
+  .tip.show { display: block; }
+  .tip .x { position: absolute; top: 10px; right: 14px; color: #59636e;
+            cursor: pointer; font-size: 18px; }
+  .tip h3 { margin: 0 0 12px; font-size: 17px; font-weight: 600; }
+  .tip .inc { background: #f6f8fa; border-radius: 6px; padding: 12px 16px;
+              display: flex; justify-content: space-between; font-size: 16px; margin-bottom: 14px; }
+  .tip .rel { color: #59636e; font-size: 12px; letter-spacing: .08em; margin-bottom: 6px; }
+  .tip .relt { font-size: 15px; }
+  footer { text-align: center; color: #59636e; font-size: 13px; margin-top: 32px; }
+  footer a { color: #0969da; text-decoration: none; }
 </style>
 </head>
 <body>
+<div class="banner up" id="banner">
+  <svg width="26" height="26" viewBox="0 0 16 16" fill="#fff"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>
+  <span id="banner-text">All Systems Operational</span>
+</div>
 <div class="wrap">
-  <h1>isiNET status</h1>
-  <div class="sub">unofficial uptime tracker · checks every 15 min · no login needed</div>
-  <div id="pill" class="pill">…</div>
-  <div class="meta" id="meta"></div>
-  <div class="stats">
-    <div class="stat"><div class="v" id="u24">–</div><div class="l">uptime 24h</div></div>
-    <div class="stat"><div class="v" id="u7">–</div><div class="l">uptime 7d</div></div>
-    <div class="stat"><div class="v" id="u30">–</div><div class="l">uptime 30d</div></div>
-    <div class="stat"><div class="v" id="u90">–</div><div class="l">uptime 90d</div></div>
-  </div>
-  <h2>surfaces</h2>
-  <div class="surf" id="surf"></div>
-  <h2>recent checks</h2>
-  <div class="log" id="log"></div>
+  <h1>Current Status: isiNET</h1>
+  <div class="sub">Uptime over the past 90 days. Unofficial monitor, no login needed.</div>
+  <div id="cards"></div>
   <footer>unofficial monitor · data: <a href="status.json">status.json</a> ·
     <a href="https://github.com/legobele/isinetc-status">source</a></footer>
 </div>
 <script>
+const fmtDate = d => {
+  const [y, m, dd] = d.split('-').map(Number);
+  return new Date(y, m - 1, dd).toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'});
+};
+const pct = v => v === null || v === undefined ? '–' : (Number.isInteger(v) ? v + ' %' : v.toFixed(2) + ' %');
+
 async function load() {
-  const r = await fetch('status.json?' + Date.now());
-  const s = await r.json();
-  const cur = s.current;
-  const pill = document.getElementById('pill');
-  pill.textContent = cur.status === 'up' ? '● OPERATIONAL' : '● DOWN';
-  pill.className = 'pill ' + cur.status;
-  const d = new Date(cur.checked_at);
-  document.getElementById('meta').textContent =
-    'last checked ' + d.toLocaleString() + ' · HTTP ' + cur.http_code + ' · ' + cur.response_ms + ' ms';
-  const pct = v => v === null ? '–' : v.toFixed(1) + '%';
-  document.getElementById('u24').textContent = pct(s.uptime_24h);
-  document.getElementById('u7').textContent = pct(s.uptime_7d);
-  document.getElementById('u30').textContent = pct(s.uptime_30d);
-  document.getElementById('u90').textContent = pct(s.uptime_90d);
-  document.getElementById('surf').innerHTML = Object.values(s.targets || {}).map(t =>
-    '<div class="srow"><div><span class="' + (t.status === 'up' ? 'ok' : 'bad') + '">●</span> <span class="n">' + t.name + '</span>' +
-    '<span class="u">' + t.url + '</span></div>' +
-    '<span class="t">' + t.status + ' · ' + pct(t.uptime_24h) + ' / 24h</span></div>'
-  ).join('');
-  document.getElementById('log').innerHTML = s.recent.map(c => {
-    const t = new Date(c.t).toLocaleString([], {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'});
-    return '<div class="row"><span class="' + (c.up ? 'ok' : 'bad') + '">' +
-      (c.up ? '● up' : '● down') + '</span><span class="t">' + t + '</span>' +
-      '<span class="t">' + c.code + ' · ' + c.ms + ' ms</span></div>';
-  }).join('');
+  const s = await (await fetch('status.json?' + Date.now())).json();
+  const allUp = Object.values(s.targets || {}).every(t => t.status === 'up');
+  const banner = document.getElementById('banner');
+  banner.className = 'banner ' + (allUp ? 'up' : 'down');
+  document.getElementById('banner-text').textContent =
+    allUp ? 'All Systems Operational' : 'Some Systems Down';
+
+  const host = document.getElementById('cards');
+  host.innerHTML = '';
+  for (const [key, t] of Object.entries(s.targets || {})) {
+    const days = (s.daily && s.daily[key]) || [];
+    const card = document.createElement('div');
+    card.className = 'card';
+    const bars = days.map(d => {
+      const cls = d.uptime === null ? 'none' : d.uptime >= 99.5 ? 'up' : d.uptime <= 0 ? 'down' : 'part';
+      return `<div class="bar ${cls}" data-d="${d.d}" data-u="${d.uptime === null ? '' : d.uptime}" data-m="${d.down_min || 0}"></div>`;
+    }).join('');
+    card.innerHTML = `
+      <div class="card-head">
+        <div class="card-title">${t.name}
+          <span class="q" title="${t.url}">?</span></div>
+        <div class="check ${t.status === 'up' ? '' : 'bad'}">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="#fff"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>
+        </div>
+      </div>
+      <div class="bars">${bars}</div>
+      <div class="labels"><span>90 days ago</span><span class="rule"></span>
+        <span>${pct(t.uptime_90d)} uptime</span><span class="rule"></span><span>Today</span></div>
+      <div class="state">${t.status === 'up' ? 'Normal' : 'Down'} · last check HTTP ${t.http_code} · ${t.response_ms} ms</div>
+      <div class="tip"><span class="x">✕</span><h3></h3><div class="inc"></div>
+        <div class="rel">RELATED</div><div class="relt"></div></div>`;
+    host.appendChild(card);
+
+    const tip = card.querySelector('.tip');
+    const showTip = (bar) => {
+      const d = bar.dataset.d, u = bar.dataset.u, m = +bar.dataset.m;
+      tip.querySelector('h3').textContent = fmtDate(d);
+      if (u === '' || u === undefined) {
+        tip.querySelector('.inc').innerHTML = '<span>No data</span><span></span>';
+        tip.querySelector('.relt').textContent = 'Monitor started ' + fmtDate(days.find(x => x.uptime !== null)?.d || d) + '.';
+      } else if (+u >= 99.5) {
+        tip.querySelector('.inc').innerHTML = '<span>No downtime</span><span></span>';
+        tip.querySelector('.relt').textContent = 'No downtime recorded on this day.';
+      } else {
+        const h = Math.floor(m / 60), mm = m % 60;
+        tip.querySelector('.inc').innerHTML =
+          `<span>Incident</span><span>${h > 0 ? h + ' hrs ' : ''}${mm} mins</span>`;
+        tip.querySelector('.relt').textContent = 'isiNET outage detected by monitor.';
+      }
+      const r = bar.getBoundingClientRect(), cr = card.getBoundingClientRect();
+      tip.style.left = Math.max(8, Math.min(cr.width - 300, r.left - cr.left + r.width / 2 - 150)) + 'px';
+      tip.style.top = (r.top - cr.top - tip.offsetHeight - 12) + 'px';
+      if (parseFloat(tip.style.top) < 0) tip.style.top = (r.bottom - cr.top + 12) + 'px';
+      tip.classList.add('show');
+    };
+    card.querySelectorAll('.bar').forEach(b =>
+      b.addEventListener('click', e => { e.stopPropagation(); showTip(b); }));
+    tip.querySelector('.x').addEventListener('click', e => { e.stopPropagation(); tip.classList.remove('show'); });
+  }
+  document.addEventListener('click', () =>
+    document.querySelectorAll('.tip.show').forEach(t => t.classList.remove('show')));
 }
 load();
 setInterval(load, 60000);

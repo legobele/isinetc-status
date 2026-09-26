@@ -57,12 +57,44 @@ def target_status(key):
         "uptime_30d": uptime(30 * 24, key), "uptime_90d": uptime(90 * 24, key),
     }
 
+# Daily rollup per surface, last 90 days (for the bar strips).
+per_day = {k: {} for k in TARGETS}
+for c in checks:
+    d = c["t"][:10]
+    tg = c.get("targets") or {}
+    ups = {}
+    if tg:
+        for k in TARGETS:
+            if k in tg:
+                ups[k] = tg[k]["up"]
+    else:  # legacy entries predate per-target tracking → primary surface
+        ups["portal"] = c["up"]
+    for k, u in ups.items():
+        acc = per_day[k].setdefault(d, [0, 0])
+        acc[1] += 1
+        if u:
+            acc[0] += 1
+today = datetime.now(timezone.utc).date()
+day_list = [(today - timedelta(days=i)).isoformat() for i in range(89, -1, -1)]
+daily = {}
+for k in TARGETS:
+    rows = []
+    for d in day_list:
+        if d in per_day[k]:
+            up_n, n = per_day[k][d]
+            rows.append({"d": d, "uptime": round(100.0 * up_n / n, 1),
+                         "down_min": (n - up_n) * 15})
+        else:
+            rows.append({"d": d, "uptime": None, "down_min": 0})
+    daily[k] = rows
+
 status = {
     "name": "isiNET",
     "generated_at": datetime.now(timezone.utc).isoformat(),
     "current": {"status": "up" if p_up else "down", "checked_at": ts,
                 "http_code": p_code, "response_ms": p_ms},
     "targets": {k: target_status(k) for k in TARGETS},
+    "daily": daily,
     "uptime_24h": uptime(24),
     "uptime_7d": uptime(7 * 24),
     "uptime_30d": uptime(30 * 24),
