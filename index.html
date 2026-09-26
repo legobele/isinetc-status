@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>isiNET status</title>
+<style>
+  :root { color-scheme: dark; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #0f1216; color: #e8eaed;
+         margin: 0; padding: 32px 16px; display: flex; justify-content: center; }
+  .wrap { width: 100%; max-width: 640px; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .sub { color: #8b93a1; font-size: 13px; margin-bottom: 24px; }
+  .pill { display: inline-block; padding: 10px 22px; border-radius: 999px; font-weight: 700;
+          font-size: 18px; margin-bottom: 8px; }
+  .up { background: #0c6b3c; color: #fff; }
+  .down { background: #c92a2a; color: #fff; }
+  .meta { color: #8b93a1; font-size: 13px; margin-bottom: 28px; }
+  .stats { display: flex; gap: 12px; margin-bottom: 28px; }
+  .stat { flex: 1; background: #171b21; border: 1px solid #262c35; border-radius: 12px;
+          padding: 14px; text-align: center; }
+  .stat .v { font-size: 22px; font-weight: 700; }
+  .stat .l { font-size: 11px; color: #8b93a1; margin-top: 4px; }
+  h2 { font-size: 15px; margin: 0 0 12px; }
+  .log { background: #171b21; border: 1px solid #262c35; border-radius: 12px; overflow: hidden; }
+  .row { display: flex; justify-content: space-between; padding: 9px 14px; font-size: 13px;
+         border-bottom: 1px solid #20252d; font-variant-numeric: tabular-nums; }
+  .row:last-child { border-bottom: none; }
+  .ok { color: #51cf66; } .bad { color: #ff6b6b; } .t { color: #8b93a1; }
+  footer { margin-top: 28px; color: #5c6470; font-size: 12px; text-align: center; }
+  a { color: #4dabf7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>isiNET status</h1>
+  <div class="sub">unofficial uptime tracker · checks every 15 min · no login needed</div>
+  <div id="pill" class="pill">…</div>
+  <div class="meta" id="meta"></div>
+  <div class="stats">
+    <div class="stat"><div class="v" id="u24">–</div><div class="l">uptime 24h</div></div>
+    <div class="stat"><div class="v" id="u7">–</div><div class="l">uptime 7d</div></div>
+    <div class="stat"><div class="v" id="u30">–</div><div class="l">uptime 30d</div></div>
+  </div>
+  <h2>recent checks</h2>
+  <div class="log" id="log"></div>
+  <footer>unofficial monitor · data: <a href="status.json">status.json</a> ·
+    <a href="https://github.com/legobele/isinetc-status">source</a></footer>
+</div>
+<script>
+async function load() {
+  const r = await fetch('status.json?' + Date.now());
+  const s = await r.json();
+  const cur = s.current;
+  const pill = document.getElementById('pill');
+  pill.textContent = cur.status === 'up' ? '● OPERATIONAL' : '● DOWN';
+  pill.className = 'pill ' + cur.status;
+  const d = new Date(cur.checked_at);
+  document.getElementById('meta').textContent =
+    'last checked ' + d.toLocaleString() + ' · HTTP ' + cur.http_code + ' · ' + cur.response_ms + ' ms';
+  const pct = v => v === null ? '–' : v.toFixed(1) + '%';
+  document.getElementById('u24').textContent = pct(s.uptime_24h);
+  document.getElementById('u7').textContent = pct(s.uptime_7d);
+  document.getElementById('u30').textContent = pct(s.uptime_30d);
+  document.getElementById('log').innerHTML = s.recent.map(c => {
+    const t = new Date(c.t).toLocaleString([], {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'});
+    return '<div class="row"><span class="' + (c.up ? 'ok' : 'bad') + '">' +
+      (c.up ? '● up' : '● down') + '</span><span class="t">' + t + '</span>' +
+      '<span class="t">' + c.code + ' · ' + c.ms + ' ms</span></div>';
+  }).join('');
+}
+load();
+setInterval(load, 60000);
+</script>
+</body>
+</html>
