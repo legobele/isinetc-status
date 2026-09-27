@@ -1,11 +1,11 @@
 {
   "name": "isiNET",
-  "generated_at": "2026-09-27T00:25:32.684820+00:00",
+  "generated_at": "2026-09-27T00:40:35.853241+00:00",
   "current": {
     "status": "up",
-    "checked_at": "2026-09-27T00:25:27Z",
+    "checked_at": "2026-09-27T00:40:32Z",
     "http_code": 200,
-    "response_ms": 2052
+    "response_ms": 1538
   },
   "targets": {
     "portal": {
@@ -13,18 +13,18 @@
       "url": "https://isipr.net/AIM/Login.aspx",
       "status": "up",
       "http_code": 200,
-      "response_ms": 2052,
-      "uptime_24h": 98.15,
-      "uptime_7d": 98.15,
-      "uptime_30d": 98.15,
-      "uptime_90d": 98.15
+      "response_ms": 1538,
+      "uptime_24h": 98.18,
+      "uptime_7d": 98.18,
+      "uptime_30d": 98.18,
+      "uptime_90d": 98.18
     },
     "uptime": {
       "name": "UP-Time portal",
       "url": "https://portal.isipr.net/",
       "status": "up",
       "http_code": 200,
-      "response_ms": 2373,
+      "response_ms": 1153,
       "uptime_24h": 100.0,
       "uptime_7d": 100.0,
       "uptime_30d": 100.0,
@@ -937,12 +937,30 @@
       }
     ]
   },
-  "uptime_24h": 98.21,
-  "uptime_7d": 98.21,
-  "uptime_30d": 98.21,
-  "uptime_90d": 98.21,
-  "total_checks": 56,
+  "uptime_24h": 98.25,
+  "uptime_7d": 98.25,
+  "uptime_30d": 98.25,
+  "uptime_90d": 98.25,
+  "total_checks": 57,
   "recent": [
+    {
+      "t": "2026-09-27T00:40:32Z",
+      "up": true,
+      "code": 200,
+      "ms": 1538,
+      "targets": {
+        "portal": {
+          "up": true,
+          "code": 200,
+          "ms": 1538
+        },
+        "uptime": {
+          "up": true,
+          "code": 200,
+          "ms": 1153
+        }
+      }
+    },
     {
       "t": "2026-09-27T00:25:27Z",
       "up": true,
