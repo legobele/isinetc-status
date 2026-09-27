@@ -1,11 +1,11 @@
 {
   "name": "isiNET",
-  "generated_at": "2026-09-27T20:10:28.521077+00:00",
+  "generated_at": "2026-09-27T20:25:29.760897+00:00",
   "current": {
     "status": "up",
-    "checked_at": "2026-09-27T20:10:26Z",
+    "checked_at": "2026-09-27T20:25:27Z",
     "http_code": 200,
-    "response_ms": 1085
+    "response_ms": 1097
   },
   "targets": {
     "portal": {
@@ -13,18 +13,18 @@
       "url": "https://isipr.net/AIM/Login.aspx",
       "status": "up",
       "http_code": 200,
-      "response_ms": 1085,
-      "uptime_24h": 97.92,
-      "uptime_7d": 98.5,
-      "uptime_30d": 98.5,
-      "uptime_90d": 98.5
+      "response_ms": 1097,
+      "uptime_24h": 97.94,
+      "uptime_7d": 98.51,
+      "uptime_30d": 98.51,
+      "uptime_90d": 98.51
     },
     "uptime": {
       "name": "UP-Time portal",
       "url": "https://portal.isipr.net/",
       "status": "up",
       "http_code": 200,
-      "response_ms": 932,
+      "response_ms": 907,
       "uptime_24h": 100.0,
       "uptime_7d": 100.0,
       "uptime_30d": 100.0,
@@ -937,12 +937,30 @@
       }
     ]
   },
-  "uptime_24h": 97.92,
-  "uptime_7d": 98.52,
-  "uptime_30d": 98.52,
-  "uptime_90d": 98.52,
-  "total_checks": 135,
+  "uptime_24h": 97.94,
+  "uptime_7d": 98.53,
+  "uptime_30d": 98.53,
+  "uptime_90d": 98.53,
+  "total_checks": 136,
   "recent": [
+    {
+      "t": "2026-09-27T20:25:27Z",
+      "up": true,
+      "code": 200,
+      "ms": 1097,
+      "targets": {
+        "portal": {
+          "up": true,
+          "code": 200,
+          "ms": 1097
+        },
+        "uptime": {
+          "up": true,
+          "code": 200,
+          "ms": 907
+        }
+      }
+    },
     {
       "t": "2026-09-27T20:10:26Z",
       "up": true,
@@ -2002,24 +2020,6 @@
           "up": true,
           "code": 200,
           "ms": 836
-        }
-      }
-    },
-    {
-      "t": "2026-09-27T05:25:25Z",
-      "up": true,
-      "code": 200,
-      "ms": 860,
-      "targets": {
-        "portal": {
-          "up": true,
-          "code": 200,
-          "ms": 860
-        },
-        "uptime": {
-          "up": true,
-          "code": 200,
-          "ms": 908
         }
       }
     }
