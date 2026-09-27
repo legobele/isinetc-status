@@ -1,11 +1,11 @@
 {
   "name": "isiNET",
-  "generated_at": "2026-09-26T23:55:28.865252+00:00",
+  "generated_at": "2026-09-27T00:10:28.374219+00:00",
   "current": {
     "status": "up",
-    "checked_at": "2026-09-26T23:55:26Z",
+    "checked_at": "2026-09-27T00:10:26Z",
     "http_code": 200,
-    "response_ms": 1353
+    "response_ms": 1024
   },
   "targets": {
     "portal": {
@@ -13,18 +13,18 @@
       "url": "https://isipr.net/AIM/Login.aspx",
       "status": "up",
       "http_code": 200,
-      "response_ms": 1353,
-      "uptime_24h": 98.08,
-      "uptime_7d": 98.08,
-      "uptime_30d": 98.08,
-      "uptime_90d": 98.08
+      "response_ms": 1024,
+      "uptime_24h": 98.11,
+      "uptime_7d": 98.11,
+      "uptime_30d": 98.11,
+      "uptime_90d": 98.11
     },
     "uptime": {
       "name": "UP-Time portal",
       "url": "https://portal.isipr.net/",
       "status": "up",
       "http_code": 200,
-      "response_ms": 1108,
+      "response_ms": 900,
       "uptime_24h": 100.0,
       "uptime_7d": 100.0,
       "uptime_30d": 100.0,
@@ -33,11 +33,6 @@
   },
   "daily": {
     "portal": [
-      {
-        "d": "2026-06-29",
-        "uptime": null,
-        "down_min": 0
-      },
       {
         "d": "2026-06-30",
         "uptime": null,
@@ -482,14 +477,14 @@
         "d": "2026-09-26",
         "uptime": 98.1,
         "down_min": 15
+      },
+      {
+        "d": "2026-09-27",
+        "uptime": 100.0,
+        "down_min": 0
       }
     ],
     "uptime": [
-      {
-        "d": "2026-06-29",
-        "uptime": null,
-        "down_min": 0
-      },
       {
         "d": "2026-06-30",
         "uptime": null,
@@ -934,15 +929,38 @@
         "d": "2026-09-26",
         "uptime": 100.0,
         "down_min": 0
+      },
+      {
+        "d": "2026-09-27",
+        "uptime": 100.0,
+        "down_min": 0
       }
     ]
   },
-  "uptime_24h": 98.15,
-  "uptime_7d": 98.15,
-  "uptime_30d": 98.15,
-  "uptime_90d": 98.15,
-  "total_checks": 54,
+  "uptime_24h": 98.18,
+  "uptime_7d": 98.18,
+  "uptime_30d": 98.18,
+  "uptime_90d": 98.18,
+  "total_checks": 55,
   "recent": [
+    {
+      "t": "2026-09-27T00:10:26Z",
+      "up": true,
+      "code": 200,
+      "ms": 1024,
+      "targets": {
+        "portal": {
+          "up": true,
+          "code": 200,
+          "ms": 1024
+        },
+        "uptime": {
+          "up": true,
+          "code": 200,
+          "ms": 900
+        }
+      }
+    },
     {
       "t": "2026-09-26T23:55:26Z",
       "up": true,
