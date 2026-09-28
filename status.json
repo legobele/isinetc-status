@@ -1,11 +1,11 @@
 {
   "name": "isiNET",
-  "generated_at": "2026-09-28T22:55:32.395952+00:00",
+  "generated_at": "2026-09-28T23:10:29.359783+00:00",
   "current": {
     "status": "up",
-    "checked_at": "2026-09-28T22:55:30Z",
+    "checked_at": "2026-09-28T23:10:27Z",
     "http_code": 200,
-    "response_ms": 831
+    "response_ms": 1104
   },
   "targets": {
     "portal": {
@@ -13,18 +13,18 @@
       "url": "https://isipr.net/AIM/Login.aspx",
       "status": "up",
       "http_code": 200,
-      "response_ms": 831,
+      "response_ms": 1104,
       "uptime_24h": 97.92,
-      "uptime_7d": 98.33,
-      "uptime_30d": 98.33,
-      "uptime_90d": 98.33
+      "uptime_7d": 98.34,
+      "uptime_30d": 98.34,
+      "uptime_90d": 98.34
     },
     "uptime": {
       "name": "UP-Time portal",
       "url": "https://portal.isipr.net/",
       "status": "up",
       "http_code": 200,
-      "response_ms": 953,
+      "response_ms": 909,
       "uptime_24h": 100.0,
       "uptime_7d": 100.0,
       "uptime_30d": 100.0,
@@ -941,8 +941,26 @@
   "uptime_7d": 98.35,
   "uptime_30d": 98.35,
   "uptime_90d": 98.35,
-  "total_checks": 242,
+  "total_checks": 243,
   "recent": [
+    {
+      "t": "2026-09-28T23:10:27Z",
+      "up": true,
+      "code": 200,
+      "ms": 1104,
+      "targets": {
+        "portal": {
+          "up": true,
+          "code": 200,
+          "ms": 1104
+        },
+        "uptime": {
+          "up": true,
+          "code": 200,
+          "ms": 909
+        }
+      }
+    },
     {
       "t": "2026-09-28T22:55:30Z",
       "up": true,
@@ -2002,24 +2020,6 @@
           "up": true,
           "code": 200,
           "ms": 928
-        }
-      }
-    },
-    {
-      "t": "2026-09-28T08:10:26Z",
-      "up": true,
-      "code": 200,
-      "ms": 910,
-      "targets": {
-        "portal": {
-          "up": true,
-          "code": 200,
-          "ms": 910
-        },
-        "uptime": {
-          "up": true,
-          "code": 200,
-          "ms": 965
         }
       }
     }
