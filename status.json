@@ -1,11 +1,11 @@
 {
   "name": "isiNET",
-  "generated_at": "2026-09-28T05:10:29.381268+00:00",
+  "generated_at": "2026-09-28T05:25:28.776367+00:00",
   "current": {
     "status": "up",
-    "checked_at": "2026-09-28T05:10:26Z",
+    "checked_at": "2026-09-28T05:25:26Z",
     "http_code": 200,
-    "response_ms": 1278
+    "response_ms": 1004
   },
   "targets": {
     "portal": {
@@ -13,18 +13,18 @@
       "url": "https://isipr.net/AIM/Login.aspx",
       "status": "up",
       "http_code": 200,
-      "response_ms": 1278,
-      "uptime_24h": 97.94,
-      "uptime_7d": 97.63,
-      "uptime_30d": 97.63,
-      "uptime_90d": 97.63
+      "response_ms": 1004,
+      "uptime_24h": 97.92,
+      "uptime_7d": 97.65,
+      "uptime_30d": 97.65,
+      "uptime_90d": 97.65
     },
     "uptime": {
       "name": "UP-Time portal",
       "url": "https://portal.isipr.net/",
       "status": "up",
       "http_code": 200,
-      "response_ms": 1162,
+      "response_ms": 1086,
       "uptime_24h": 100.0,
       "uptime_7d": 100.0,
       "uptime_30d": 100.0,
@@ -480,7 +480,7 @@
       },
       {
         "d": "2026-09-28",
-        "uptime": 90.5,
+        "uptime": 90.9,
         "down_min": 30
       }
     ],
@@ -937,12 +937,30 @@
       }
     ]
   },
-  "uptime_24h": 97.94,
-  "uptime_7d": 97.66,
-  "uptime_30d": 97.66,
-  "uptime_90d": 97.66,
-  "total_checks": 171,
+  "uptime_24h": 97.92,
+  "uptime_7d": 97.67,
+  "uptime_30d": 97.67,
+  "uptime_90d": 97.67,
+  "total_checks": 172,
   "recent": [
+    {
+      "t": "2026-09-28T05:25:26Z",
+      "up": true,
+      "code": 200,
+      "ms": 1004,
+      "targets": {
+        "portal": {
+          "up": true,
+          "code": 200,
+          "ms": 1004
+        },
+        "uptime": {
+          "up": true,
+          "code": 200,
+          "ms": 1086
+        }
+      }
+    },
     {
       "t": "2026-09-28T05:10:26Z",
       "up": true,
@@ -2002,24 +2020,6 @@
           "up": true,
           "code": 200,
           "ms": 874
-        }
-      }
-    },
-    {
-      "t": "2026-09-27T14:25:27Z",
-      "up": true,
-      "code": 200,
-      "ms": 934,
-      "targets": {
-        "portal": {
-          "up": true,
-          "code": 200,
-          "ms": 934
-        },
-        "uptime": {
-          "up": true,
-          "code": 200,
-          "ms": 923
         }
       }
     }
