@@ -191,3 +191,4 @@
 {"t": "2026-09-28T10:10:26Z", "up": true, "code": 200, "ms": 1202, "targets": {"portal": {"up": true, "code": 200, "ms": 1202}, "uptime": {"up": true, "code": 200, "ms": 868}}}
 {"t": "2026-09-28T10:25:27Z", "up": true, "code": 200, "ms": 1096, "targets": {"portal": {"up": true, "code": 200, "ms": 1096}, "uptime": {"up": true, "code": 200, "ms": 891}}}
 {"t": "2026-09-28T10:40:26Z", "up": true, "code": 200, "ms": 963, "targets": {"portal": {"up": true, "code": 200, "ms": 963}, "uptime": {"up": true, "code": 200, "ms": 919}}}
+{"t": "2026-09-28T10:55:25Z", "up": true, "code": 200, "ms": 854, "targets": {"portal": {"up": true, "code": 200, "ms": 854}, "uptime": {"up": true, "code": 200, "ms": 823}}}
