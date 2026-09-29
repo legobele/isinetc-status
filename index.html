@@ -133,6 +133,25 @@ async function load() {
     card.querySelectorAll('.bar').forEach(b =>
       b.addEventListener('click', e => { e.stopPropagation(); showTip(b); }));
     tip.querySelector('.x').addEventListener('click', e => { e.stopPropagation(); tip.classList.remove('show'); });
+
+    const q = card.querySelector('.q');
+    q.addEventListener('click', e => {
+      e.stopPropagation();
+      const checks = {
+        portal: 'Expects HTTP 200 and the login page to contain "password".',
+        uptime: 'Expects HTTP 200 and the page to contain "UP-Time".'
+      };
+      tip.querySelector('h3').textContent = t.name;
+      tip.querySelector('.rel').textContent = 'HOW IT\u2019S CHECKED';
+      tip.querySelector('.inc').innerHTML =
+        `<span style="word-break:break-all"><a href="${t.url}" target="_blank" rel="noopener" style="color:#0969da;text-decoration:none">${t.url}</a></span><span></span>`;
+      tip.querySelector('.relt').textContent =
+        (checks[key] || 'HTTP check.') + ' Probed every 15 minutes, no login needed.';
+      const qr = q.getBoundingClientRect(), cr = card.getBoundingClientRect();
+      tip.style.left = Math.max(8, Math.min(cr.width - 300, qr.left - cr.left - 140)) + 'px';
+      tip.style.top = (qr.bottom - cr.top + 10) + 'px';
+      tip.classList.add('show');
+    });
   }
   document.addEventListener('click', () =>
     document.querySelectorAll('.tip.show').forEach(t => t.classList.remove('show')));
