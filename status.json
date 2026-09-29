@@ -1,11 +1,11 @@
 {
   "name": "isiNET",
-  "generated_at": "2026-09-29T06:55:28.735517+00:00",
+  "generated_at": "2026-09-29T07:10:29.436843+00:00",
   "current": {
     "status": "up",
-    "checked_at": "2026-09-29T06:55:26Z",
+    "checked_at": "2026-09-29T07:10:27Z",
     "http_code": 200,
-    "response_ms": 928
+    "response_ms": 1118
   },
   "targets": {
     "portal": {
@@ -13,7 +13,7 @@
       "url": "https://isipr.net/AIM/Login.aspx",
       "status": "up",
       "http_code": 200,
-      "response_ms": 928,
+      "response_ms": 1118,
       "uptime_24h": 100.0,
       "uptime_7d": 98.53,
       "uptime_30d": 98.53,
@@ -24,7 +24,7 @@
       "url": "https://portal.isipr.net/",
       "status": "up",
       "http_code": 200,
-      "response_ms": 1086,
+      "response_ms": 1003,
       "uptime_24h": 100.0,
       "uptime_7d": 100.0,
       "uptime_30d": 100.0,
@@ -938,11 +938,29 @@
     ]
   },
   "uptime_24h": 100.0,
-  "uptime_7d": 98.54,
-  "uptime_30d": 98.54,
-  "uptime_90d": 98.54,
-  "total_checks": 274,
+  "uptime_7d": 98.55,
+  "uptime_30d": 98.55,
+  "uptime_90d": 98.55,
+  "total_checks": 275,
   "recent": [
+    {
+      "t": "2026-09-29T07:10:27Z",
+      "up": true,
+      "code": 200,
+      "ms": 1118,
+      "targets": {
+        "portal": {
+          "up": true,
+          "code": 200,
+          "ms": 1118
+        },
+        "uptime": {
+          "up": true,
+          "code": 200,
+          "ms": 1003
+        }
+      }
+    },
     {
       "t": "2026-09-29T06:55:26Z",
       "up": true,
@@ -2002,24 +2020,6 @@
           "up": true,
           "code": 200,
           "ms": 1126
-        }
-      }
-    },
-    {
-      "t": "2026-09-28T16:10:31Z",
-      "up": true,
-      "code": 200,
-      "ms": 1164,
-      "targets": {
-        "portal": {
-          "up": true,
-          "code": 200,
-          "ms": 1164
-        },
-        "uptime": {
-          "up": true,
-          "code": 200,
-          "ms": 968
         }
       }
     }
