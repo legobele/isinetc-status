@@ -1,0 +1,24 @@
+name: isiNET probe
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: isinet-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: run probe
+        run: |
+          git config user.name "isinetc-status probe"
+          git config user.email "probe@local"
+          ./check.sh
