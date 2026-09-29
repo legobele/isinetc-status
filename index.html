@@ -139,7 +139,9 @@ async function load() {
       e.stopPropagation();
       const checks = {
         portal: 'Expects HTTP 200 and the login page to contain "password".',
-        uptime: 'Expects HTTP 200 and the page to contain "UP-Time".'
+        uptime: 'Expects HTTP 200 and the page to contain "UP-Time".',
+        site: 'Expects HTTP 200 and the stub page to redirect to isinet.app.',
+        isinetapp: 'Expects HTTP 200 from the new isinet.app domain.'
       };
       tip.querySelector('h3').textContent = t.name;
       tip.querySelector('.rel').textContent = 'HOW IT\u2019S CHECKED';

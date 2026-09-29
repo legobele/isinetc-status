@@ -9,18 +9,24 @@ LOG = os.path.join(DIR, "checks.jsonl")
 TARGETS = {
     "portal": {"name": "portal login", "url": "https://isipr.net/AIM/Login.aspx"},
     "uptime": {"name": "UP-Time portal", "url": "https://portal.isipr.net/"},
+    "site": {"name": "main site redirect", "url": "https://isipr.net/"},
+    "isinetapp": {"name": "isinet.app", "url": "https://isinet.app/"},
 }
 
 ts = sys.argv[1]
-vals = sys.argv[2:]  # p_up p_code p_ms u_up u_code u_ms
+vals = sys.argv[2:]  # p_* u_* s_* a_* (3 values each)
 p_up, p_code, p_ms = vals[0] == "true", int(vals[1]), int(vals[2])
 u_up, u_code, u_ms = vals[3] == "true", int(vals[4]), int(vals[5])
+s_up, s_code, s_ms = vals[6] == "true", int(vals[7]), int(vals[8])
+a_up, a_code, a_ms = vals[9] == "true", int(vals[10]), int(vals[11])
 
 entry = {
     "t": ts, "up": p_up, "code": p_code, "ms": p_ms,  # top-level = primary surface
     "targets": {
         "portal": {"up": p_up, "code": p_code, "ms": p_ms},
         "uptime": {"up": u_up, "code": u_code, "ms": u_ms},
+        "site": {"up": s_up, "code": s_code, "ms": s_ms},
+        "isinetapp": {"up": a_up, "code": a_code, "ms": a_ms},
     },
 }
 

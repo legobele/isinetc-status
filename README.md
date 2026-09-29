@@ -12,8 +12,11 @@ Two surfaces, checked every 15 minutes:
 |---|---|---|
 | `portal` (primary) | `https://isipr.net/AIM/Login.aspx` | HTTP 200 + page contains "password" |
 | `uptime` | `https://portal.isipr.net/` | HTTP 200 + page contains "UP-Time" |
+| `site` | `https://isipr.net/` | HTTP 200 + stub page redirects to isinet.app |
+| `isinetapp` | `https://isinet.app/` | HTTP 200 (the new domain — its HTTPS was broken as of 2026-09-29) |
 
-The page's headline status follows the primary surface (`portal`).
+The banner reads "All Systems Operational" only when every target is up; the
+`FLIP:up` / `FLIP:down` notification tracks the primary surface (`portal`).
 
 ## How it works
 

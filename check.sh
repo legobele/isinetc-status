@@ -23,11 +23,14 @@ probe() { # url, content-match -> "up code ms"
 TS=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 read -r P_UP P_CODE P_MS <<< "$(probe "https://isipr.net/AIM/Login.aspx" "password")"
 read -r U_UP U_CODE U_MS <<< "$(probe "https://portal.isipr.net/" "UP-Time")"
+read -r S_UP S_CODE S_MS <<< "$(probe "https://isipr.net/" "isinet.app")"
+read -r A_UP A_CODE A_MS <<< "$(probe "https://isinet.app/" "html")"
 
 PREV="unknown"
 [ -f .prev_status ] && PREV=$(cat .prev_status)
 
-python3 gen.py "$TS" "$P_UP" "$P_CODE" "$P_MS" "$U_UP" "$U_CODE" "$U_MS"
+python3 gen.py "$TS" "$P_UP" "$P_CODE" "$P_MS" "$U_UP" "$U_CODE" "$U_MS" \
+  "$S_UP" "$S_CODE" "$S_MS" "$A_UP" "$A_CODE" "$A_MS"
 
 echo "$([ "$P_UP" = "true" ] && echo up || echo down)" > .prev_status
 git add -A >/dev/null 2>&1
