@@ -94,6 +94,49 @@ for k in TARGETS:
             rows.append({"d": d, "uptime": None, "down_min": 0})
     daily[k] = rows
 
+# Incident detection: walk the log per target, open on up->down, close on down->up.
+# Backfills history automatically, including targets added later (their incident
+# opens at the first observed down check, not before).
+def parse_ts(s):
+    return datetime.fromisoformat(s.replace("Z", "+00:00"))
+
+incidents = []
+open_inc = {}
+prev_state = {}
+for c in checks:
+    tg = c.get("targets") or {"portal": {"up": c["up"]}}
+    for k in TARGETS:
+        if k not in tg:
+            continue
+        up = tg[k]["up"]
+        was = prev_state.get(k)
+        if up is False and k not in open_inc and was is not False:
+            # down, and previous state was up (transition) or unknown (first observation)
+            open_inc[k] = {"target": k, "started_at": c["t"], "down_checks": 1}
+        elif up is False and k in open_inc:
+            open_inc[k]["down_checks"] += 1
+        elif up is True and k in open_inc:
+            inc = open_inc.pop(k)
+            inc["ended_at"] = c["t"]
+            incidents.append(inc)
+        prev_state[k] = up
+for k, inc in open_inc.items():
+    inc["ended_at"] = None
+    incidents.append(inc)
+for inc in incidents:
+    inc["target_name"] = TARGETS[inc["target"]]["name"]
+    inc["url"] = TARGETS[inc["target"]]["url"]
+    if inc["ended_at"]:
+        mins = int((parse_ts(inc["ended_at"]) - parse_ts(inc["started_at"])).total_seconds() // 60)
+        inc["duration_min"] = max(mins, 15)
+    else:
+        inc["duration_min"] = None
+ongoing = sorted([i for i in incidents if i["ended_at"] is None],
+                 key=lambda i: i["started_at"])
+resolved = sorted([i for i in incidents if i["ended_at"] is not None],
+                  key=lambda i: i["started_at"], reverse=True)
+incidents = (ongoing + resolved)[:30]
+
 status = {
     "name": "isiNET",
     "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -101,6 +144,7 @@ status = {
                 "http_code": p_code, "response_ms": p_ms},
     "targets": {k: target_status(k) for k in TARGETS},
     "daily": daily,
+    "incidents": incidents,
     "uptime_24h": uptime(24),
     "uptime_7d": uptime(7 * 24),
     "uptime_30d": uptime(30 * 24),
