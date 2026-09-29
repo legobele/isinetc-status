@@ -51,6 +51,20 @@
               display: flex; justify-content: space-between; font-size: 16px; margin-bottom: 14px; }
   .tip .rel { color: #59636e; font-size: 12px; letter-spacing: .08em; margin-bottom: 6px; }
   .tip .relt { font-size: 15px; }
+  .inc-row { background: #fff; border: 1px solid #d0d7de; border-radius: 6px;
+             padding: 14px 20px; margin-bottom: 10px; display: flex;
+             align-items: center; gap: 12px; }
+  .inc-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .inc-dot.open { background: #cf222e; }
+  .inc-dot.closed { background: #59636e; }
+  .inc-body { flex: 1; }
+  .inc-name { font-weight: 600; font-size: 15px; }
+  .inc-meta { color: #59636e; font-size: 13px; margin-top: 2px; }
+  .inc-badge { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 20px;
+               flex-shrink: 0; }
+  .inc-badge.open { background: #ffebe9; color: #cf222e; }
+  .inc-badge.closed { background: #eaeef2; color: #59636e; }
+  .inc-empty { color: #59636e; font-size: 14px; padding: 8px 0 16px; }
   footer { text-align: center; color: #59636e; font-size: 13px; margin-top: 32px; }
   footer a { color: #0969da; text-decoration: none; }
 </style>
@@ -64,6 +78,8 @@
   <h1>Current Status: isiNET</h1>
   <div class="sub">Uptime over the past 90 days. Unofficial monitor, no login needed.</div>
   <div id="cards"></div>
+  <h2 style="font-size:20px;font-weight:600;margin:28px 0 12px">Recent incidents</h2>
+  <div id="incidents"></div>
   <footer>unofficial monitor · data: <a href="status.json">status.json</a> ·
     <a href="https://github.com/legobele/isinetc-status">source</a></footer>
 </div>
@@ -157,6 +173,28 @@ async function load() {
   }
   document.addEventListener('click', () =>
     document.querySelectorAll('.tip.show').forEach(t => t.classList.remove('show')));
+
+  const incHost = document.getElementById('incidents');
+  const incidents = s.incidents || [];
+  if (!incidents.length) {
+    incHost.innerHTML = '<div class="inc-empty">No incidents recorded in the last 90 days.</div>';
+  } else {
+    incHost.innerHTML = incidents.map(i => {
+      const open = !i.ended_at;
+      const dur = open ? 'ongoing' :
+        (i.duration_min >= 60
+          ? Math.floor(i.duration_min / 60) + 'h ' + (i.duration_min % 60) + 'm'
+          : i.duration_min + ' min');
+      return `<div class="inc-row">
+        <div class="inc-dot ${open ? 'open' : 'closed'}"></div>
+        <div class="inc-body">
+          <div class="inc-name">${i.target_name}</div>
+          <div class="inc-meta">${fmtDate(i.started_at.slice(0, 10))} · ${dur} · ${i.down_checks} failed check${i.down_checks === 1 ? '' : 's'}</div>
+        </div>
+        <div class="inc-badge ${open ? 'open' : 'closed'}">${open ? 'ONGOING' : 'RESOLVED'}</div>
+      </div>`;
+    }).join('');
+  }
 }
 load();
 setInterval(load, 60000);
