@@ -1,0 +1,37 @@
+name: probe watchdog
+
+# Watches status.json freshness and manually triggers the probe when
+# GitHub's cron scheduler drops ticks (it does that sometimes).
+# The probe itself runs on a 15-min cron; this is the safety net.
+
+on:
+  schedule:
+    - cron: '7 * * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check freshness, dispatch probe if stale
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          GEN_AT=$(curl -s --max-time 30 https://legobele.github.io/isinetc-status/status.json | jq -r '.generated_at')
+          AGE_MIN=$(( ($(date +%s) - $(date -d "$GEN_AT" +%s)) / 60 ))
+          echo "status.json generated_at=${GEN_AT} (age ${AGE_MIN} min)"
+          if [ "$AGE_MIN" -gt 50 ]; then
+            echo "stale - dispatching isiNET probe"
+            curl -s --max-time 30 -X POST \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              https://api.github.com/repos/legobele/isinetc-status/actions/workflows/probe.yml/dispatches \
+              -d '{"ref":"main"}'
+            echo "dispatch sent"
+          else
+            echo "fresh - nothing to do"
+          fi
