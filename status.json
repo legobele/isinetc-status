@@ -1,11 +1,11 @@
 {
   "name": "isiNET",
-  "generated_at": "2026-10-11T19:26:13.732653+00:00",
+  "generated_at": "2026-10-11T20:26:05.176479+00:00",
   "current": {
     "status": "up",
-    "checked_at": "2026-10-11T19:26:11Z",
+    "checked_at": "2026-10-11T20:26:03Z",
     "http_code": 200,
-    "response_ms": 640
+    "response_ms": 685
   },
   "targets": {
     "portal": {
@@ -13,9 +13,9 @@
       "url": "https://isipr.net/AIM/Login.aspx",
       "status": "up",
       "http_code": 200,
-      "response_ms": 640,
-      "uptime_24h": 90.0,
-      "uptime_7d": 96.36,
+      "response_ms": 685,
+      "uptime_24h": 90.91,
+      "uptime_7d": 96.43,
       "uptime_30d": 97.76,
       "uptime_90d": 97.76
     },
@@ -24,9 +24,9 @@
       "url": "https://portal.isipr.net/",
       "status": "up",
       "http_code": 200,
-      "response_ms": 571,
-      "uptime_24h": 90.0,
-      "uptime_7d": 96.36,
+      "response_ms": 548,
+      "uptime_24h": 90.91,
+      "uptime_7d": 96.43,
       "uptime_30d": 99.0,
       "uptime_90d": 99.0
     },
@@ -35,18 +35,18 @@
       "url": "https://isipr.net/",
       "status": "up",
       "http_code": 200,
-      "response_ms": 373,
-      "uptime_24h": 90.0,
-      "uptime_7d": 96.36,
-      "uptime_30d": 96.04,
-      "uptime_90d": 96.04
+      "response_ms": 358,
+      "uptime_24h": 90.91,
+      "uptime_7d": 96.43,
+      "uptime_30d": 96.08,
+      "uptime_90d": 96.08
     },
     "isinetapp": {
       "name": "isinet.app",
       "url": "https://isinet.app/",
       "status": "down",
       "http_code": 0,
-      "response_ms": 265,
+      "response_ms": 263,
       "uptime_24h": 0.0,
       "uptime_7d": 0.0,
       "uptime_30d": 0.0,
@@ -502,7 +502,7 @@
       },
       {
         "d": "2026-10-11",
-        "uptime": 88.9,
+        "uptime": 90.0,
         "down_min": 15
       }
     ],
@@ -954,7 +954,7 @@
       },
       {
         "d": "2026-10-11",
-        "uptime": 88.9,
+        "uptime": 90.0,
         "down_min": 15
       }
     ],
@@ -1406,7 +1406,7 @@
       },
       {
         "d": "2026-10-11",
-        "uptime": 88.9,
+        "uptime": 90.0,
         "down_min": 15
       }
     ],
@@ -1859,7 +1859,7 @@
       {
         "d": "2026-10-11",
         "uptime": 0.0,
-        "down_min": 135
+        "down_min": 150
       }
     ]
   },
@@ -1867,7 +1867,7 @@
     {
       "target": "isinetapp",
       "started_at": "2026-09-29T13:59:24Z",
-      "down_checks": 101,
+      "down_checks": 102,
       "ended_at": null,
       "target_name": "isinet.app",
       "url": "https://isinet.app/",
@@ -1991,12 +1991,40 @@
       "duration_min": 15
     }
   ],
-  "uptime_24h": 90.0,
-  "uptime_7d": 96.36,
+  "uptime_24h": 90.91,
+  "uptime_7d": 96.43,
   "uptime_30d": 97.77,
   "uptime_90d": 97.77,
-  "total_checks": 403,
+  "total_checks": 404,
   "recent": [
+    {
+      "t": "2026-10-11T20:26:03Z",
+      "up": true,
+      "code": 200,
+      "ms": 685,
+      "targets": {
+        "portal": {
+          "up": true,
+          "code": 200,
+          "ms": 685
+        },
+        "uptime": {
+          "up": true,
+          "code": 200,
+          "ms": 548
+        },
+        "site": {
+          "up": true,
+          "code": 200,
+          "ms": 358
+        },
+        "isinetapp": {
+          "up": false,
+          "code": 0,
+          "ms": 263
+        }
+      }
+    },
     {
       "t": "2026-10-11T19:26:11Z",
       "up": true,
@@ -3646,34 +3674,6 @@
           "up": false,
           "code": 0,
           "ms": 186
-        }
-      }
-    },
-    {
-      "t": "2026-10-04T08:49:25Z",
-      "up": true,
-      "code": 200,
-      "ms": 622,
-      "targets": {
-        "portal": {
-          "up": true,
-          "code": 200,
-          "ms": 622
-        },
-        "uptime": {
-          "up": true,
-          "code": 200,
-          "ms": 574
-        },
-        "site": {
-          "up": true,
-          "code": 200,
-          "ms": 469
-        },
-        "isinetapp": {
-          "up": false,
-          "code": 0,
-          "ms": 237
         }
       }
     }
