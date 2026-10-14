@@ -1,11 +1,11 @@
 {
   "name": "isiNET",
-  "generated_at": "2026-10-14T07:10:55.634905+00:00",
+  "generated_at": "2026-10-14T07:40:49.911108+00:00",
   "current": {
     "status": "up",
-    "checked_at": "2026-10-14T07:10:52Z",
+    "checked_at": "2026-10-14T07:40:46Z",
     "http_code": 200,
-    "response_ms": 657
+    "response_ms": 1064
   },
   "targets": {
     "portal": {
@@ -13,7 +13,7 @@
       "url": "https://isipr.net/AIM/Login.aspx",
       "status": "up",
       "http_code": 200,
-      "response_ms": 657,
+      "response_ms": 1064,
       "uptime_24h": 100.0,
       "uptime_7d": 99.38,
       "uptime_30d": 98.28,
@@ -24,29 +24,29 @@
       "url": "https://portal.isipr.net/",
       "status": "up",
       "http_code": 200,
-      "response_ms": 2012,
+      "response_ms": 2069,
       "uptime_24h": 100.0,
       "uptime_7d": 99.38,
-      "uptime_30d": 99.23,
-      "uptime_90d": 99.23
+      "uptime_30d": 99.24,
+      "uptime_90d": 99.24
     },
     "site": {
       "name": "main site redirect",
       "url": "https://isipr.net/",
       "status": "up",
       "http_code": 200,
-      "response_ms": 393,
+      "response_ms": 396,
       "uptime_24h": 100.0,
       "uptime_7d": 99.38,
-      "uptime_30d": 98.2,
-      "uptime_90d": 98.2
+      "uptime_30d": 98.21,
+      "uptime_90d": 98.21
     },
     "isinetapp": {
       "name": "isinet.app",
       "url": "https://isinet.app/",
       "status": "down",
       "http_code": 0,
-      "response_ms": 319,
+      "response_ms": 236,
       "uptime_24h": 0.0,
       "uptime_7d": 0.0,
       "uptime_30d": 0.0,
@@ -1859,7 +1859,7 @@
       {
         "d": "2026-10-14",
         "uptime": 0.0,
-        "down_min": 225
+        "down_min": 240
       }
     ]
   },
@@ -1867,7 +1867,7 @@
     {
       "target": "isinetapp",
       "started_at": "2026-09-29T13:59:24Z",
-      "down_checks": 222,
+      "down_checks": 223,
       "ended_at": null,
       "target_name": "isinet.app",
       "url": "https://isinet.app/",
@@ -1993,10 +1993,38 @@
   ],
   "uptime_24h": 100.0,
   "uptime_7d": 99.38,
-  "uptime_30d": 98.28,
-  "uptime_90d": 98.28,
-  "total_checks": 524,
+  "uptime_30d": 98.29,
+  "uptime_90d": 98.29,
+  "total_checks": 525,
   "recent": [
+    {
+      "t": "2026-10-14T07:40:46Z",
+      "up": true,
+      "code": 200,
+      "ms": 1064,
+      "targets": {
+        "portal": {
+          "up": true,
+          "code": 200,
+          "ms": 1064
+        },
+        "uptime": {
+          "up": true,
+          "code": 200,
+          "ms": 2069
+        },
+        "site": {
+          "up": true,
+          "code": 200,
+          "ms": 396
+        },
+        "isinetapp": {
+          "up": false,
+          "code": 0,
+          "ms": 236
+        }
+      }
+    },
     {
       "t": "2026-10-14T07:10:52Z",
       "up": true,
@@ -3646,34 +3674,6 @@
           "up": false,
           "code": 0,
           "ms": 284
-        }
-      }
-    },
-    {
-      "t": "2026-10-13T03:11:05Z",
-      "up": true,
-      "code": 200,
-      "ms": 680,
-      "targets": {
-        "portal": {
-          "up": true,
-          "code": 200,
-          "ms": 680
-        },
-        "uptime": {
-          "up": true,
-          "code": 200,
-          "ms": 609
-        },
-        "site": {
-          "up": true,
-          "code": 200,
-          "ms": 396
-        },
-        "isinetapp": {
-          "up": false,
-          "code": 0,
-          "ms": 318
         }
       }
     }
