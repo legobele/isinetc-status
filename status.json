@@ -1,21 +1,21 @@
 {
   "name": "isiNET",
-  "generated_at": "2026-10-23T04:26:24.582305+00:00",
+  "generated_at": "2026-10-23T04:56:05.180051+00:00",
   "current": {
-    "status": "down",
-    "checked_at": "2026-10-23T04:25:56Z",
-    "http_code": 0,
-    "response_ms": 25001
+    "status": "up",
+    "checked_at": "2026-10-23T04:56:03Z",
+    "http_code": 200,
+    "response_ms": 734
   },
   "targets": {
     "portal": {
       "name": "portal login",
       "url": "https://isipr.net/AIM/Login.aspx",
-      "status": "down",
-      "http_code": 0,
-      "response_ms": 25001,
-      "uptime_24h": 92.16,
-      "uptime_7d": 97.48,
+      "status": "up",
+      "http_code": 200,
+      "response_ms": 734,
+      "uptime_24h": 94.12,
+      "uptime_7d": 97.47,
       "uptime_30d": 98.16,
       "uptime_90d": 98.16
     },
@@ -24,8 +24,8 @@
       "url": "https://portal.isipr.net/",
       "status": "up",
       "http_code": 200,
-      "response_ms": 1938,
-      "uptime_24h": 94.12,
+      "response_ms": 548,
+      "uptime_24h": 96.08,
       "uptime_7d": 98.6,
       "uptime_30d": 99.08,
       "uptime_90d": 99.08
@@ -35,8 +35,8 @@
       "url": "https://isipr.net/",
       "status": "up",
       "http_code": 200,
-      "response_ms": 339,
-      "uptime_24h": 94.12,
+      "response_ms": 399,
+      "uptime_24h": 96.08,
       "uptime_7d": 98.88,
       "uptime_30d": 98.82,
       "uptime_90d": 98.82
@@ -46,7 +46,7 @@
       "url": "https://isinet.app/",
       "status": "down",
       "http_code": 0,
-      "response_ms": 248,
+      "response_ms": 263,
       "uptime_24h": 0.0,
       "uptime_7d": 0.0,
       "uptime_30d": 0.0,
@@ -502,7 +502,7 @@
       },
       {
         "d": "2026-10-23",
-        "uptime": 90.0,
+        "uptime": 90.9,
         "down_min": 15
       }
     ],
@@ -1859,7 +1859,7 @@
       {
         "d": "2026-10-23",
         "uptime": 0.0,
-        "down_min": 150
+        "down_min": 165
       }
     ]
   },
@@ -1867,7 +1867,7 @@
     {
       "target": "isinetapp",
       "started_at": "2026-09-29T13:59:24Z",
-      "down_checks": 676,
+      "down_checks": 677,
       "ended_at": null,
       "target_name": "isinet.app",
       "url": "https://isinet.app/",
@@ -1877,10 +1877,10 @@
       "target": "portal",
       "started_at": "2026-10-23T04:25:56Z",
       "down_checks": 1,
-      "ended_at": null,
+      "ended_at": "2026-10-23T04:56:03Z",
       "target_name": "portal login",
       "url": "https://isipr.net/AIM/Login.aspx",
-      "duration_min": null
+      "duration_min": 30
     },
     {
       "target": "portal",
@@ -2081,12 +2081,40 @@
       "duration_min": 15
     }
   ],
-  "uptime_24h": 92.16,
-  "uptime_7d": 97.48,
+  "uptime_24h": 94.12,
+  "uptime_7d": 97.47,
   "uptime_30d": 98.16,
   "uptime_90d": 98.16,
-  "total_checks": 978,
+  "total_checks": 979,
   "recent": [
+    {
+      "t": "2026-10-23T04:56:03Z",
+      "up": true,
+      "code": 200,
+      "ms": 734,
+      "targets": {
+        "portal": {
+          "up": true,
+          "code": 200,
+          "ms": 734
+        },
+        "uptime": {
+          "up": true,
+          "code": 200,
+          "ms": 548
+        },
+        "site": {
+          "up": true,
+          "code": 200,
+          "ms": 399
+        },
+        "isinetapp": {
+          "up": false,
+          "code": 0,
+          "ms": 263
+        }
+      }
+    },
     {
       "t": "2026-10-23T04:25:56Z",
       "up": false,
@@ -3736,34 +3764,6 @@
           "up": false,
           "code": 0,
           "ms": 323
-        }
-      }
-    },
-    {
-      "t": "2026-10-22T00:40:57Z",
-      "up": true,
-      "code": 200,
-      "ms": 602,
-      "targets": {
-        "portal": {
-          "up": true,
-          "code": 200,
-          "ms": 602
-        },
-        "uptime": {
-          "up": true,
-          "code": 200,
-          "ms": 558
-        },
-        "site": {
-          "up": true,
-          "code": 200,
-          "ms": 444
-        },
-        "isinetapp": {
-          "up": false,
-          "code": 0,
-          "ms": 249
         }
       }
     }
